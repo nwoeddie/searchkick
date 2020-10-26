@@ -891,6 +891,12 @@ module Searchkick
           filters << {bool: {must_not: where_filters(value)}}
         elsif field == :_and
           filters << {bool: {must: value.map { |or_statement| {bool: {filter: where_filters(or_statement)}} }}}
+        elsif field == :nested
+          Array.wrap(value).each do |nested_filter|
+            if nested_filter[:path].present? && nested_filter[:where].present?
+              filters << {field => nested_filter.except(:where).merge(query: {bool: {filter: nested_filter[:where].map { |f, v| term_filters(f, v) }}})}
+            end
+          end
         # elsif field == :_script
         #   filters << {script: {script: {source: value, lang: "painless"}}}
         else
