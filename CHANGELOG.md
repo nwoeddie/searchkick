@@ -1,5 +1,16 @@
-## 4.4.2 (unreleased)
+## 4.4.4 (2021-03-12)
 
+- Fixed `too_long_frame_exception` with `scroll` method
+- Fixed multi-word emoji tokenization
+
+## 4.4.3 (2021-02-25)
+
+- Added support for Hunspell
+- Fixed warning about accessing system indices
+
+## 4.4.2 (2020-11-23)
+
+- Added `missing_records` method to results
 - Fixed issue with `like` and special characters
 
 ## 4.4.1 (2020-06-24)
